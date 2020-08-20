@@ -1,11 +1,19 @@
 {
-  "name": "my-app",
+  "name": "react-hr",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://223.27.210.251/test/emp",
   "dependencies": {
-    "react": "^16.11.0",
-    "react-dom": "^16.11.0",
-    "react-scripts": "3.2.0"
+    "antd": "^4.1.4",
+    "axios": "^0.19.2",
+    "bootstrap": "^4.4.1",
+    "devextreme": "19.2.7",
+    "devextreme-react": "19.2.7",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "3.2.0",
+    "reactstrap": "^8.4.1",
+    "styled-components": "^5.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
