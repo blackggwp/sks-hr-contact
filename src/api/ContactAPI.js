@@ -1,10 +1,9 @@
 import axios from 'axios';
 
 export const onGetEmpData = async (action) => {
-  let url ;
   switch(action.method) {
     case 'get':
-      url = 'http://223.27.210.251/test/api/emp/q_contact.php?req=getemp';
+      const url = 'http://223.27.210.251/test/api/emp/q_contact.php?req=getemp';
       try {
         const result = await axios(url);
         const res = result.data.empData
@@ -35,9 +34,10 @@ export const onGetEmpData = async (action) => {
         return e;
       }
       break;
+
+      default:
+      break;
   }
-  
-          
 };
 
 export const onGetOutletData = async () => {

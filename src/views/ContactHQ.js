@@ -4,41 +4,45 @@ import DataGrid, {
   GroupPanel,
   Paging,
   SearchPanel,
-  Editing,
   Export
 } from 'devextreme-react/data-grid';
 import * as ContactHQAPI from '../api/ContactAPI';
 
 const ContactHq = (props) => {
 
-  const [data, setData] = useState([]);
+  const [data, setData] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
 
-  const isRealtime = true;
-  let dataPrev = [];
-  let action = {};
+  // const isRealtime = false
 
   useEffect(() => {
-    if(isRealtime) {
+    // if(isRealtime) {
     async function callAPI() {
-      const res = await ContactHQAPI.onGetEmpData(action = {method: 'get'});
+      setIsLoading(true)
+      let dataPrev = []
+      let action = {}
+      const res = await ContactHQAPI.onGetEmpData(action = {method: 'get'})
 
       if( JSON.stringify(dataPrev) !== JSON.stringify(res) ) {
-        setData(res);
-        console.log('changed!!');
+        setIsLoading(false)
+        setData(res)
+        console.log('changed!!')
       }
-      dataPrev = res;
+      dataPrev = res
 
       // setTimeout(function() {
       //   // console.log("Realtime"); 
       //     callAPI();
       // }, 10000)
     }
-    callAPI();
-    }
+    callAPI()
+    // }
         
-  }, []);
+  }, [])
 
   return (
+    isLoading ? (<h1>loading</h1>) :
+    (
       <div>
         <DataGrid
         dataSource={data}
@@ -58,7 +62,8 @@ const ContactHq = (props) => {
           <Column dataField={'phone'} dataType={'string'} />
         </DataGrid>
       </div>
-    );
+    )
+    )
   }
 
 export default ContactHq;
