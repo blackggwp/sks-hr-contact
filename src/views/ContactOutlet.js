@@ -31,9 +31,9 @@ const ContactOutlet = (props) => {
           <Paging defaultPageSize={20} />
           <Export enabled={true}/>
 
-          <Column dataField={'Outletcode'} dataType={'string'} />
+          {/* <Column dataField={'Outletcode'} dataType={'string'} />
           <Column dataField={'Outletname'} dataType={'string'} />
-          <Column dataField={'OutletTel'} dataType={'string'} />
+          <Column dataField={'OutletTel'} dataType={'string'} /> */}
         </DataGrid>
       </div>
     );

@@ -55,11 +55,11 @@ const ContactHq = (props) => {
         <Paging defaultPageSize={20} />
         <Export enabled={true}/>
 
-          <Column dataField={'name'} dataType={'string'} />
+          {/* <Column dataField={'name'} dataType={'string'} />
           <Column dataField={'department'} dataType={'string'} groupIndex={0} />
           <Column dataField={'nickname'} dataType={'string'} />
           <Column dataField={'tel'} dataType={'string'} />
-          <Column dataField={'phone'} dataType={'string'} />
+          <Column dataField={'phone'} dataType={'string'} /> */}
         </DataGrid>
       </div>
     )

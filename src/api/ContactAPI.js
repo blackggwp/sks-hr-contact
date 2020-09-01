@@ -1,20 +1,21 @@
 import axios from 'axios';
 
 export const onGetEmpData = async (action) => {
-  switch(action.method) {
+  switch (action.method) {
     case 'get':
-      const url = 'http://223.27.210.251/test/api/emp/q_contact.php?req=getemp';
+      // const url = 'http://223.27.210.251/test/api/emp/q_contact.php?req=getemp';
+      const url = 'http://192.168.0.251:1000/emps';
       try {
         const result = await axios(url);
-        const res = result.data.empData
+        const res = result.data[0]
         return res;
-      } 
-        catch(e) {
+      }
+      catch (e) {
         console.error("ContactHQAPI Error: ", e);
         return e;
       }
-      break;
-      
+      // break;
+
     case 'update':
       const urlUpdate = 'http://223.27.210.251/test/api/emp/q_contact.php?req=updateemp';
       const param = {
@@ -28,30 +29,29 @@ export const onGetEmpData = async (action) => {
         const res2 = result2
         console.log(res2);
         return res2;
-      } 
-        catch(e) {
+      }
+      catch (e) {
         console.error("ContactHQUpdateAPI Error: ", e);
         return e;
       }
-      break;
+      // break;
 
-      default:
+    default:
       break;
   }
 };
 
 export const onGetOutletData = async () => {
 
-  const url =
-  'http://223.27.210.251/test/api/emp/q_contact.php?req=outlet'
-
-        try {
-          const result = await axios(url);
-          const res = result.data.outletData
-          return res;
-        } 
-          catch(e) {
-          console.error("ContactOutletAPI Error: ", e);
-          return e;
-        }
+  // const url = 'http://223.27.210.251/test/api/emp/q_contact.php?req=outlet'
+  const url = 'http://192.168.0.251:1000/emps/outlets';
+  try {
+    const result = await axios(url);
+    const res = result.data[0]
+    return res;
+  }
+  catch (e) {
+    console.error("ContactOutletAPI Error: ", e);
+    return e;
+  }
 };
