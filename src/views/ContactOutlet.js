@@ -25,6 +25,7 @@ const ContactOutlet = (props) => {
           dataSource={data}
           allowColumnReordering={true}
           showBorders={true}
+          allowColumnResizing={true}
         >
           <GroupPanel visible={true} />
           <SearchPanel visible={true} />
