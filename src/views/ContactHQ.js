@@ -1,17 +1,22 @@
 import React, { useEffect, useState } from 'react'
 import DataGrid, {
-  Column,
   GroupPanel,
   Paging,
   SearchPanel,
-  Export
+  Export,
+  Grouping
 } from 'devextreme-react/data-grid';
+import { CheckBox } from 'devextreme-react';
 import * as ContactHQAPI from '../api/ContactAPI';
 
 const ContactHq = (props) => {
-
   const [data, setData] = useState([])
   const [isLoading, setIsLoading] = useState(false)
+  const [autoExpandAll, setAutoExpandAll] = useState(true);
+
+  const onAutoExpandAllChanged = () => {
+    setAutoExpandAll(!autoExpandAll)
+  }
 
   // const isRealtime = false
 
@@ -51,16 +56,21 @@ const ContactHq = (props) => {
         allowColumnResizing={true}
         >
         <GroupPanel visible={true} />
+        <Grouping autoExpandAll={autoExpandAll} />
         <SearchPanel visible={true} height={10} />
         <Paging defaultPageSize={20} />
         <Export enabled={true}/>
-
-          {/* <Column dataField={'name'} dataType={'string'} />
-          <Column dataField={'department'} dataType={'string'} groupIndex={0} />
-          <Column dataField={'nickname'} dataType={'string'} />
-          <Column dataField={'tel'} dataType={'string'} />
-          <Column dataField={'phone'} dataType={'string'} /> */}
         </DataGrid>
+
+        <div className="options">
+          <div className="caption">Options</div>
+          <div className="option">
+            <CheckBox text="Expand All Groups"
+              value={autoExpandAll}
+              onValueChanged={onAutoExpandAllChanged} 
+              />
+          </div>
+        </div>
       </div>
     )
     )
