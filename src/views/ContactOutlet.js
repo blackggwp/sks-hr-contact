@@ -4,18 +4,15 @@ import DataGrid, {
   Paging,
   SearchPanel,
   Export,
-  Grouping
+  Grouping,
+  ColumnChooser,
+  ColumnFixing,
+  FilterRow,
 } from 'devextreme-react/data-grid';
-import { CheckBox } from 'devextreme-react';
 import * as ContactOutletAPI from '../api/ContactAPI';
 
 const ContactOutlet = (props) => {
   const [data, setData] = useState([]);
-  const [autoExpandAll, setAutoExpandAll] = useState(true);
-
-  const onAutoExpandAllChanged = () => {
-    setAutoExpandAll(!autoExpandAll)
-  }
 
   useEffect(() => {
     async function callAPI() {
@@ -25,33 +22,26 @@ const ContactOutlet = (props) => {
     callAPI();
   }, []);
 
-    return (
-      <div>
-        <DataGrid
-          dataSource={data}
-          allowColumnReordering={true}
-          showBorders={true}
-          allowColumnResizing={true}
-        >
-          <GroupPanel visible={true} />
-          <Grouping autoExpandAll={autoExpandAll} />
-          <SearchPanel visible={true} />
-          <Paging defaultPageSize={20} />
-          <Export enabled={true}/>
-        </DataGrid>
+  return (
+    <div>
+      <DataGrid
+        dataSource={data}
+        allowColumnReordering={true}
+        showBorders={true}
+        allowColumnResizing={true}
+      >
+        <GroupPanel visible={true} />
+        <Grouping autoExpandAll={false} />
+        <SearchPanel visible={true} />
+        <Paging defaultPageSize={20} />
+        <Export enabled={true} />
+        <ColumnChooser enabled={true} />
+        <ColumnFixing enabled={true} />
+        <FilterRow visible={true} />
+      </DataGrid>
+    </div>
+  );
 
-        <div className="options">
-          <div className="caption">Options</div>
-          <div className="option">
-            <CheckBox text="Expand All Groups"
-              value={autoExpandAll}
-              onValueChanged={onAutoExpandAllChanged} 
-              />
-          </div>
-        </div>
-      </div>
-    );
-    
-  }
+}
 
 export default ContactOutlet;
