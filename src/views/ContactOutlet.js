@@ -1,47 +1,37 @@
 import React, { useEffect, useState } from 'react'
-import DataGrid, {
-  GroupPanel,
-  Paging,
-  SearchPanel,
-  Export,
-  Grouping,
-  ColumnChooser,
-  ColumnFixing,
-  FilterRow,
-} from 'devextreme-react/data-grid';
-import * as ContactOutletAPI from '../api/ContactAPI';
+import Axios from 'axios'
+import DataGridDevExtreme from '../components/DataGridDevExtreme'
+import '../config'
 
-const ContactOutlet = (props) => {
-  const [data, setData] = useState([]);
+export default function ContactOutlet() {
+  const [data, setData] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState(false)
 
   useEffect(() => {
     async function callAPI() {
-      const res = await ContactOutletAPI.onGetOutletData();
-      setData(res);
+      setIsLoading(true)
+      const url = `${global.config.apiUrl}/emps/outlets`
+      try {
+        const { data } = await Axios(url);
+        setData(data[0])
+        setIsLoading(false)
+      }
+      catch (e) {
+        console.error("ContactHQAPI Error: ", e);
+        setError(e)
+      }
     }
-    callAPI();
-  }, []);
+    callAPI()
+  }, [])
 
   return (
     <div>
-      <DataGrid
-        dataSource={data}
-        allowColumnReordering={true}
-        showBorders={true}
-        allowColumnResizing={true}
-      >
-        <GroupPanel visible={true} />
-        <Grouping autoExpandAll={false} />
-        <SearchPanel visible={true} />
-        <Paging defaultPageSize={20} />
-        <Export enabled={true} />
-        <ColumnChooser enabled={true} />
-        <ColumnFixing enabled={true} />
-        <FilterRow visible={true} />
-      </DataGrid>
+      {error && <div>Something went wrong...</div>}
+      {isLoading ? (<h1>loading...</h1>) :
+        (
+          <DataGridDevExtreme data={data} />
+        )}
     </div>
-  );
-
+  )
 }
-
-export default ContactOutlet;

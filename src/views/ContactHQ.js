@@ -1,69 +1,37 @@
 import React, { useEffect, useState } from 'react'
-import DataGrid, {
-  GroupPanel,
-  Paging,
-  SearchPanel,
-  Export,
-  Grouping,
-  ColumnChooser,
-  ColumnFixing,
-  FilterRow,
-} from 'devextreme-react/data-grid';
-import * as ContactHQAPI from '../api/ContactAPI';
+import Axios from 'axios'
+import DataGridDevExtreme from '../components/DataGridDevExtreme'
+import '../config'
 
-const ContactHq = (props) => {
+export default function ContactHQ() {
   const [data, setData] = useState([])
   const [isLoading, setIsLoading] = useState(false)
-
-  // const isRealtime = false
+  const [error, setError] = useState(false)
 
   useEffect(() => {
-    // if(isRealtime) {
     async function callAPI() {
       setIsLoading(true)
-      let dataPrev = []
-      let action = {}
-      const res = await ContactHQAPI.onGetEmpData(action = { method: 'get' })
-
-      if (JSON.stringify(dataPrev) !== JSON.stringify(res)) {
+      const url = `${global.config.apiUrl}/emps`
+      try {
+        const { data } = await Axios(url);
+        setData(data[0])
         setIsLoading(false)
-        setData(res)
-        console.log('changed!!')
       }
-      dataPrev = res
-
-      // setTimeout(function() {
-      //   // console.log("Realtime"); 
-      //     callAPI();
-      // }, 10000)
+      catch (e) {
+        console.error("ContactHQAPI Error: ", e);
+        setError(e)
+      }
     }
     callAPI()
-    // }
-
   }, [])
 
   return (
-    isLoading ? (<h1>loading</h1>) :
-      (
-        <div>
-          <DataGrid
-            dataSource={data}
-            allowColumnReordering={true}
-            showBorders={true}
-            allowColumnResizing={true}
-          >
-            <GroupPanel visible={true} />
-            <Grouping autoExpandAll={false} />
-            <SearchPanel visible={true} height={10} />
-            <Paging defaultPageSize={20} />
-            <Export enabled={true} />
-            <ColumnChooser enabled={true} />
-            <ColumnFixing enabled={true} />
-            <FilterRow visible={true} />
-          </DataGrid>
-        </div>
-      )
+    <div>
+      {error && <div>Something went wrong...</div>}
+      {isLoading ? (<h1>loading...</h1>) :
+        (
+          <DataGridDevExtreme data={data} />
+        )}
+    </div>
   )
 }
-
-export default ContactHq;
