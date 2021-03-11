@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "http://223.27.210.251/contact",
   "dependencies": {
+    "@material-ui/core": "^4.11.3",
     "@material-ui/data-grid": "^4.0.0-alpha.21",
     "antd": "^4.1.4",
     "axios": "^0.19.2",
