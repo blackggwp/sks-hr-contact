@@ -2,7 +2,7 @@ import React from "react";
 import { useApiRequest } from "../api/utils";
 import DataGridDevExtreme from "../components/DataGridDevExtreme";
 import "../config";
-import Loading from '../components/Loding'
+import Loading from '../components/Loading'
 
 export default function ContactOutlet() {
   const { data, error, isLoading } = useApiRequest(

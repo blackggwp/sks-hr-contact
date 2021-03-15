@@ -19,7 +19,10 @@ const Main = () => (
       <Content style={{ padding: "0 20px" }}>
         <div className="site-layout-content">
           <Switch>
-            <Route exact path={`${process.env.PUBLIC_URL}/contact`}>
+            <Route exact path={`${process.env.PUBLIC_URL}/`}>
+              <Home />
+            </Route>
+            <Route path={`${process.env.PUBLIC_URL}/hq`}>
               <Home />
             </Route>
             <Route path={`${process.env.PUBLIC_URL}/outlet`}>
