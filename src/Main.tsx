@@ -1,11 +1,5 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "antd/dist/antd.css";
-import "devextreme/dist/css/dx.common.css";
-import "devextreme/dist/css/dx.light.css";
-import "./css/index.css";
-import "./css/App.css";
 import Home from "./Home";
 import Page404 from "./views/Page404";
 import ContactOutlet from "./views/ContactOutlet";

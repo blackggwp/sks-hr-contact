@@ -5,8 +5,14 @@ import { Layout } from "antd";
 import { HeaderText } from "./Text";
 const { Header } = Layout;
 
+// interface NavbarProps {
+//   pathname: string
+// }
+// const NavbarDemo: React.FC<NavbarProps> = ({ pathname }) => {
+
 export default function NavbarDemo() {
   const location = useLocation()
+  // console.log(location.pathname)
 
   return (
     <>
@@ -19,7 +25,7 @@ export default function NavbarDemo() {
       <Menu
         theme="dark"
         mode="horizontal"
-        defaultSelectedKeys={[location.pathname === "/contact/" && "/hq"]}
+        defaultSelectedKeys={[location.pathname === "/" ? "/hq" : location.pathname]}
         style={{ paddingLeft: 20 }}
       >
         <Menu.Item key={"/hq"}>
@@ -32,3 +38,5 @@ export default function NavbarDemo() {
     </>
   );
 }
+
+// export default NavbarDemo

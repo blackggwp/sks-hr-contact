@@ -10,11 +10,13 @@ import "./css/App.css";
 import NavbarDemo from "./components/NavbarDemo";
 import Main from "./Main";
 
-const hist = createBrowserHistory();
+const hist = createBrowserHistory({
+  basename: "/contact"
+});
 
 export default function App() {
   return (
-    <Router history={hist} basename={"/contact"}>
+    <Router history={hist}>
       <NavbarDemo />
       <Main />
     </Router>

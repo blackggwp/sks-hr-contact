@@ -1,25 +1,15 @@
 import Axios from "axios";
 import { useEffect, useState } from "react";
 
-export const useApiRequest = url => {
+export const useApiRequest = (url: string): {} => {
+
+  // function useApiRequest(x: number, y: number): number {
+  //   return x + y;
+  // }
+
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-
-  // useEffect(() => {
-  //   const fetchData = () => {
-  //     Axios
-  //       .get(url)
-  //       .then(response => {
-  //         setIsLoading(true);
-  //         setData(response.data);
-  //       })
-  //       .catch(error => {
-  //         setError(error);
-  //       });
-  //   };
-  //   fetchData();
-  // }, [url]);
 
   useEffect(() => {
     async function fetchData() {
