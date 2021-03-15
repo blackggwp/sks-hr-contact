@@ -1,11 +1,13 @@
 import React from "react";
 import { Menu } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Layout } from "antd";
 import { HeaderText } from "./Text";
 const { Header } = Layout;
 
 export default function NavbarDemo() {
+  const location = useLocation()
+
   return (
     <>
       <Header>
@@ -17,13 +19,13 @@ export default function NavbarDemo() {
       <Menu
         theme="dark"
         mode="horizontal"
-        defaultSelectedKeys={["1"]}
+        defaultSelectedKeys={[location.pathname]}
         style={{ paddingLeft: 20 }}
       >
-        <Menu.Item key="1">
+        <Menu.Item key={"/contact"}>
           <Link to={`${process.env.PUBLIC_URL}/contact`}>HQ</Link>
         </Menu.Item>
-        <Menu.Item key="2">
+        <Menu.Item key="/outlet">
           <Link to={`${process.env.PUBLIC_URL}/outlet`}>Outlet</Link>
         </Menu.Item>
       </Menu>
