@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  font-family: 'Sriracha', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif, cursive;
 
@@ -13,7 +13,7 @@ code {
     monospace;
 }
 
-@font-face {
+/* @font-face {
   font-family: 'Sriracha';
   src: URL('./Sriracha-Regular.ttf') format('truetype');
-}
+} */

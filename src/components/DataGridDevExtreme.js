@@ -11,9 +11,9 @@ import DataGrid, {
 
 export default function DataGridDevExtreme(props) {
   return (<DataGrid
-    style={{
-      fontFamily: 'Sriracha',
-    }}
+    // style={{
+    //   fontFamily: 'Sriracha',
+    // }}
     dataSource={props.data}
     allowColumnReordering={true}
     showBorders={true}
