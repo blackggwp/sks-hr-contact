@@ -14,7 +14,11 @@ export const useApiRequest = (url: string): IApiResponses => {
     async function fetchData() {
       setIsLoading(true);
       try {
-        const { data } = await Axios(url);
+        const { data } = await Axios({
+          method: "get",
+          url: url,
+          timeout: 1000 * 5, // Wait for 5 seconds
+        })
         setData(data[0]);
         setIsLoading(false);
       } catch (e) {
