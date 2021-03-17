@@ -9,6 +9,7 @@ import "./css/index.css";
 import "./css/App.css";
 import NavbarDemo from "./components/NavbarDemo";
 import Main from "./Main";
+import ErrorBoundary from "./components/ErrorBoundary";
 
 const hist = createBrowserHistory({
   basename: "/contact"
@@ -16,9 +17,11 @@ const hist = createBrowserHistory({
 
 export default function App() {
   return (
-    <Router history={hist}>
-      <NavbarDemo />
-      <Main />
-    </Router>
+    <ErrorBoundary>
+      <Router history={hist}>
+        <NavbarDemo />
+        <Main />
+      </Router>
+    </ErrorBoundary>
   );
 }

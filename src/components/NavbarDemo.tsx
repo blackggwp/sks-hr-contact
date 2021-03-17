@@ -5,11 +5,6 @@ import { Layout } from "antd";
 import { HeaderText } from "./Text";
 const { Header } = Layout;
 
-// interface NavbarProps {
-//   pathname: string
-// }
-// const NavbarDemo: React.FC<NavbarProps> = ({ pathname }) => {
-
 export default function NavbarDemo() {
   const location = useLocation()
   // console.log(location.pathname)
@@ -18,7 +13,8 @@ export default function NavbarDemo() {
     <>
       <Header>
         <div className="logo" />
-        <Link to={`${process.env.PUBLIC_URL}/hq`}>
+        {/* <Link to={`${process.env.PUBLIC_URL}/hq`}> */}
+        <Link to='/hq'>
           <HeaderText>Sukishi Contact</HeaderText>
         </Link>
       </Header>
@@ -29,14 +25,12 @@ export default function NavbarDemo() {
         style={{ paddingLeft: 20 }}
       >
         <Menu.Item key={"/hq"}>
-          <Link to={`${process.env.PUBLIC_URL}/hq`}>HQ</Link>
+          <Link to='/hq'>HQ</Link>
         </Menu.Item>
         <Menu.Item key="/outlet">
-          <Link to={`${process.env.PUBLIC_URL}/outlet`}>Outlet</Link>
+          <Link to='/outlet'>Outlet</Link>
         </Menu.Item>
       </Menu>
     </>
   );
 }
-
-// export default NavbarDemo

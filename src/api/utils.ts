@@ -1,13 +1,12 @@
 import Axios from "axios";
 import { useEffect, useState } from "react";
 
-export const useApiRequest = (url: string): {} => {
+interface IApiResponses {
+  error: {} | null, isLoading: boolean, data: {} | undefined
+}
+export const useApiRequest = (url: string): IApiResponses => {
 
-  // function useApiRequest(x: number, y: number): number {
-  //   return x + y;
-  // }
-
-  const [data, setData] = useState([]);
+  const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -22,10 +21,11 @@ export const useApiRequest = (url: string): {} => {
         console.error("fetchData Error: ", e);
         setError(e);
         setIsLoading(false);
+        return { e, isLoading: false, data: undefined };
+
       }
     }
     fetchData();
   }, [url]);
-
   return { error, isLoading, data };
 };
