@@ -26,7 +26,7 @@ export default function DataGridDevExtreme(props) {
         scrollByThumb={true}
         showScrollbar="always"
       />
-      <GroupPanel visible={true} />
+      <GroupPanel visible={true} emptyPanelText="Drag for group" />
       <Grouping autoExpandAll={false} />
       <SearchPanel visible={true} height={10} />
       <Paging defaultPageSize={20} />
