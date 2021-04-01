@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import DataGrid, {
   GroupPanel,
   Paging,
@@ -7,27 +7,32 @@ import DataGrid, {
   Grouping,
   ColumnChooser,
   ColumnFixing,
-} from 'devextreme-react/data-grid';
+  Scrolling,
+} from "devextreme-react/data-grid";
 
 export default function DataGridDevExtreme(props) {
-  return (<DataGrid
-    // style={{
-    //   fontFamily: 'Sriracha',
-    // }}
-    dataSource={props.data}
-    allowColumnReordering={true}
-    showBorders={true}
-    allowColumnResizing={true}
-    columnAutoWidth
-    height={'40rem'}
-  >
-    <GroupPanel visible={true} />
-    <Grouping autoExpandAll={false} />
-    <SearchPanel visible={true} height={10} />
-    <Paging defaultPageSize={20} />
-    <Export enabled={true} />
-    <ColumnChooser enabled={true} />
-    <ColumnFixing enabled={true} />
-  </DataGrid>
-  )
+  return (
+    <DataGrid
+      dataSource={props.data}
+      allowColumnReordering={true}
+      showBorders={true}
+      allowColumnResizing={true}
+      columnAutoWidth
+      height={"40rem"}
+    >
+      <Scrolling
+        useNative={true}
+        scrollByContent={true}
+        scrollByThumb={true}
+        showScrollbar="always"
+      />
+      <GroupPanel visible={true} />
+      <Grouping autoExpandAll={false} />
+      <SearchPanel visible={true} height={10} />
+      <Paging defaultPageSize={20} />
+      <Export enabled={true} />
+      <ColumnChooser enabled={true} />
+      <ColumnFixing enabled={true} />
+    </DataGrid>
+  );
 }
