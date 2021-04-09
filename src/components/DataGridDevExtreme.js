@@ -7,8 +7,10 @@ import DataGrid, {
   Grouping,
   ColumnChooser,
   ColumnFixing,
-  Scrolling,
+  Pager,
 } from "devextreme-react/data-grid";
+import "devextreme/dist/css/dx.common.css";
+import "devextreme/dist/css/dx.light.css";
 
 export default function DataGridDevExtreme(props) {
   return (
@@ -18,18 +20,19 @@ export default function DataGridDevExtreme(props) {
       showBorders={true}
       allowColumnResizing={true}
       columnAutoWidth
-      height={"40rem"}
+      columnHidingEnabled
     >
-      <Scrolling
-        useNative={true}
-        scrollByContent={true}
-        scrollByThumb={true}
-        showScrollbar="always"
-      />
-      <GroupPanel visible={true} emptyPanelText="Drag for group" />
+      <GroupPanel visible={true} emptyPanelText="Group column here" />
       <Grouping autoExpandAll={false} />
+      <Pager
+        allowedPageSizes={[10, 30]}
+        showInfo={true}
+        showNavigationButtons={true}
+        showPageSizeSelector={true}
+        visible={true}
+      />
+      <Paging defaultPageSize={10} />
       <SearchPanel visible={true} height={10} />
-      <Paging defaultPageSize={20} />
       <Export enabled={true} />
       <ColumnChooser enabled={true} />
       <ColumnFixing enabled={true} />

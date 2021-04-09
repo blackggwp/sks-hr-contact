@@ -1,21 +1,25 @@
 import React from "react";
 import { useApiRequest } from "./api/utils";
 import DataGridDevExtreme from "./components/DataGridDevExtreme";
-import config from './config'
+import config from "./config";
 import Loading from "./components/Loading";
+import ProgressBar from "./components/ProgressBar";
 
 export default function Home() {
-  const { data, error, isLoading } = useApiRequest(
-    `${config.apiUrl}/emps`
-  );
+  const { data, error, isLoading } = useApiRequest(`$${config.apiUrl}/emps`);
 
   return (
-    <div style={{
-      margin: '20px 0px 20px 0px',
-      paddingBottom: 20
-    }}>
+    <div
+      style={{
+        margin: "20px 0px 20px 0px",
+        paddingBottom: 20,
+      }}
+    >
       {isLoading && (
-        <Loading />
+        <>
+          {/* <ProgressBar value={percentage} /> */}
+          <Loading />
+        </>
       )}
       {error && (
         <h4>Something went wrong... Please Connect VPN or contact IT.</h4>

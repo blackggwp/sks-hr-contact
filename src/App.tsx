@@ -8,20 +8,28 @@ import "devextreme/dist/css/dx.light.css";
 import "./css/index.css";
 import "./css/App.css";
 import NavbarDemo from "./components/NavbarDemo";
-import Main from "./Main";
 import ErrorBoundary from "./components/ErrorBoundary";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import color from "@material-ui/core/colors/cyan";
 
 const hist = createBrowserHistory({
-  basename: "/contact"
+  basename: "/contact",
 });
 
 export default function App() {
+  const theme = createMuiTheme({
+    palette: {
+      primary: color,
+    },
+  });
+
   return (
-    <ErrorBoundary>
-      <Router history={hist}>
-        <NavbarDemo />
-        <Main />
-      </Router>
-    </ErrorBoundary>
+    <ThemeProvider theme={theme}>
+      <ErrorBoundary>
+        <Router history={hist}>
+          <NavbarDemo />
+        </Router>
+      </ErrorBoundary>
+    </ThemeProvider>
   );
 }

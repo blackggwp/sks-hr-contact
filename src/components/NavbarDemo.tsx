@@ -1,36 +1,101 @@
 import React from "react";
-import { Menu } from "antd";
-import { Link, useLocation } from "react-router-dom";
-import { Layout } from "antd";
-import { HeaderText } from "./Text";
-const { Header } = Layout;
+import { makeStyles, Theme } from "@material-ui/core/styles";
+import AppBar from "@material-ui/core/AppBar";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
+import Typography from "@material-ui/core/Typography";
+import Box from "@material-ui/core/Box";
+import Home from "../Home";
+import ContactOutlet from "../views/ContactOutlet";
+import Chip from "@material-ui/core/Chip";
 
-export default function NavbarDemo() {
-  const location = useLocation()
-  // console.log(location.pathname)
+interface TabPanelProps {
+  children?: React.ReactNode;
+  index: any;
+  value: any;
+}
+
+function TabPanel(props: TabPanelProps) {
+  const { children, value, index, ...other } = props;
 
   return (
-    <>
-      <Header>
-        <div className="logo" />
-        {/* <Link to={`${process.env.PUBLIC_URL}/hq`}> */}
-        <Link to='/hq'>
-          <HeaderText>Sukishi Contact</HeaderText>
-        </Link>
-      </Header>
-      <Menu
-        theme="dark"
-        mode="horizontal"
-        defaultSelectedKeys={[location.pathname === "/" ? "/hq" : location.pathname]}
-        style={{ paddingLeft: 20 }}
-      >
-        <Menu.Item key={"/hq"}>
-          <Link to='/hq'>HQ</Link>
-        </Menu.Item>
-        <Menu.Item key="/outlet">
-          <Link to='/outlet'>Outlet</Link>
-        </Menu.Item>
-      </Menu>
-    </>
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`nav-tabpanel-${index}`}
+      aria-labelledby={`nav-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box p={3}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
+}
+
+function a11yProps(index: any) {
+  return {
+    id: `nav-tab-${index}`,
+    "aria-controls": `nav-tabpanel-${index}`,
+  };
+}
+
+interface LinkTabProps {
+  label?: string;
+  href?: string;
+}
+
+function LinkTab(props: LinkTabProps) {
+  return (
+    <Tab
+      component="a"
+      onClick={(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+        event.preventDefault();
+      }}
+      {...props}
+    />
+  );
+}
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    flexGrow: 1,
+    backgroundColor: theme.palette.background.paper,
+  },
+}));
+
+export default function NavTabs() {
+  const classes = useStyles();
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
+    setValue(newValue);
+  };
+
+  return (
+    <div className={classes.root}>
+      <AppBar position="static">
+        <Tabs
+          variant="fullWidth"
+          value={value}
+          onChange={handleChange}
+          aria-label="nav tabs example"
+        >
+          <LinkTab label="HQ" href="/" {...a11yProps(0)} />
+          <LinkTab label="Outlet" href="/outlet" {...a11yProps(1)} />
+        </Tabs>
+      </AppBar>
+
+      <TabPanel value={value} index={0}>
+        {/* <Chip variant="outlined" size="medium" label="HQ" /> */}
+        <Home />
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+        {/* <Chip variant="outlined" size="medium" label="Outlet" /> */}
+        <ContactOutlet />
+      </TabPanel>
+    </div>
   );
 }
