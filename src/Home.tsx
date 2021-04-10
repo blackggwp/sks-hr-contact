@@ -6,7 +6,9 @@ import Loading from "./components/Loading";
 import ProgressBar from "./components/ProgressBar";
 
 export default function Home() {
-  const { data, error, isLoading } = useApiRequest(`$${config.apiUrl}/emps`);
+  const { data, error, isLoading, percentage } = useApiRequest(
+    `${config.apiUrl}/emps`
+  );
 
   return (
     <div
@@ -17,7 +19,7 @@ export default function Home() {
     >
       {isLoading && (
         <>
-          {/* <ProgressBar value={percentage} /> */}
+          <ProgressBar value={percentage} />
           <Loading />
         </>
       )}

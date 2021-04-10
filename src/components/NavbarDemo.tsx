@@ -89,11 +89,11 @@ export default function NavTabs() {
       </AppBar>
 
       <TabPanel value={value} index={0}>
-        {/* <Chip variant="outlined" size="medium" label="HQ" /> */}
+        <Chip variant="outlined" size="medium" label="HQ" />
         <Home />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        {/* <Chip variant="outlined" size="medium" label="Outlet" /> */}
+        <Chip variant="outlined" size="medium" label="Outlet" />
         <ContactOutlet />
       </TabPanel>
     </div>

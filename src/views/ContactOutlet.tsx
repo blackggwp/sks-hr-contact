@@ -7,7 +7,7 @@ import ProgressBar from "../components/ProgressBar";
 
 export default function ContactOutlet() {
   const { data, error, isLoading, percentage } = useApiRequest(
-    `$${config.apiUrl}/emps/outlets`
+    `${config.apiUrl}/emps/outlets`
   );
 
   return (
