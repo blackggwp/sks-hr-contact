@@ -10,7 +10,7 @@ import "./css/App.css";
 import NavbarDemo from "./components/NavbarDemo";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
-import color from "@material-ui/core/colors/red";
+import color from "@material-ui/core/colors/lime";
 
 const hist = createBrowserHistory({
   basename: "/contact",
