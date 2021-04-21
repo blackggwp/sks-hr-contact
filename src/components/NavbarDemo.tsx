@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { makeStyles, Theme } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
@@ -8,6 +8,8 @@ import Box from "@material-ui/core/Box";
 import Home from "../Home";
 import ContactOutlet from "../views/ContactOutlet";
 import Chip from "@material-ui/core/Chip";
+import LinearProgress from "@material-ui/core/LinearProgress";
+import MyContext from "../contexts/MyContext";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -69,6 +71,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 export default function NavTabs() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
+  const { api } = useContext(MyContext);
 
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue);
@@ -87,7 +90,11 @@ export default function NavTabs() {
           <LinkTab label="Outlet" href="/outlet" {...a11yProps(1)} />
         </Tabs>
       </AppBar>
-
+      <LinearProgress
+        variant="determinate"
+        value={api.percen}
+        color="secondary"
+      />
       <TabPanel value={value} index={0}>
         <Chip variant="outlined" size="medium" label="HQ" />
         <Home />

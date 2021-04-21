@@ -1,14 +1,22 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { useApiRequest } from "./api/utils";
 import DataGridDevExtreme from "./components/DataGridDevExtreme";
 import config from "./config";
 import Loading from "./components/Loading";
-import ProgressBar from "./components/ProgressBar";
+import MyContext from "./contexts/MyContext";
 
 export default function Home() {
   const { data, error, isLoading, percentage } = useApiRequest(
     `${config.apiUrl}/emps`
   );
+  const { api } = useContext(MyContext);
+
+  useEffect(() => {
+    api.handlePercen(percentage);
+    return () => {
+      api.handlePercen(0);
+    };
+  }, [percentage, api]);
 
   return (
     <div
@@ -19,7 +27,6 @@ export default function Home() {
     >
       {isLoading && (
         <>
-          <ProgressBar value={percentage} />
           <Loading />
         </>
       )}
