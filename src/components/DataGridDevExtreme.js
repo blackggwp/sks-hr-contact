@@ -19,8 +19,8 @@ export default function DataGridDevExtreme(props) {
       allowColumnReordering={true}
       showBorders={true}
       allowColumnResizing={true}
-      columnAutoWidth
-      columnHidingEnabled
+      // columnAutoWidth
+      // columnHidingEnabled
     >
       <GroupPanel visible={true} emptyPanelText="Group column here" />
       <Grouping autoExpandAll={false} />
